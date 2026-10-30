@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIMKEU Sekolah</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f4f0;--surf:#fff;--ink:#17231f;--mut:#5d6b66;--line:#d9dfd8;--pri:#0e4d45;--pri2:#e1efe9;--in:#17703f;--out:#b3412f;--warn:#b7791f;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1715;--surf:#17211e;--ink:#e8efeb;--mut:#9aaaa3;--line:#2a3833;--pri:#5cc2a8;--pri2:#1c302b;--in:#5fd08e;--out:#ef8a78;--warn:#e3b04b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1715;--surf:#17211e;--ink:#e8efeb;--mut:#9aaaa3;--line:#2a3833;--pri:#5cc2a8;--pri2:#1c302b;--in:#5fd08e;--out:#ef8a78;--warn:#e3b04b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;background:var(--surf);border-bottom:1px solid var(--line)}
+header b{font-size:18px;font-weight:800;color:var(--pri);display:block}
+nav{display:flex;gap:4px;overflow-x:auto;padding:8px 16px;background:var(--surf);border-bottom:1px solid var(--line)}
+nav button{flex:none;border:0;background:none;color:var(--mut);font:500 14px inherit;font-family:inherit;padding:8px 12px;border-radius:8px;cursor:pointer}
+nav button.on{background:var(--pri2);color:var(--pri);font-weight:700}
+main{max-width:960px;margin:0 auto;padding:20px 16px 40px}
+h1,h2{margin:0 0 12px;font-weight:800;letter-spacing:-.01em}
+h2{font-size:17px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.hero{background:var(--pri);color:var(--surf);border-radius:12px;padding:24px 22px;margin-bottom:16px}
+.hero .lbl{margin:0;opacity:.85}
+.big{margin:2px 0 14px;font-size:clamp(30px,8vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.bar{height:8px;border-radius:4px;background:rgba(127,127,127,.35);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--surf);border-radius:4px}
+.hero p.mut{margin:8px 0 0;opacity:.85;color:inherit}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.stats .card{margin:0}.stats p{margin:0}.stats .v{font-size:20px;font-weight:800;margin-top:2px}
+.mut{color:var(--mut)}.sm{font-size:13px}
+.sc{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:500}.r{text-align:right;white-space:nowrap}
+tr.t td{font-weight:800;border-bottom:0}
+.in{color:var(--in)}.out{color:var(--out)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 6px 0 12px}.dot.in{background:var(--in);margin-left:0}.dot.out{background:var(--out)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+label{display:flex;flex-direction:column;gap:4px;font-weight:500;font-size:13px;color:var(--mut)}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;min-width:0;width:100%}
+.btn{font:700 14px inherit;font-family:inherit;border:0;border-radius:8px;padding:10px 16px;background:var(--pri);color:var(--surf);cursor:pointer}
+.btn.ghost{background:none;color:var(--pri);border:1px solid var(--line)}
+.btn.sm{padding:6px 10px}
+.lnk{background:none;border:0;color:var(--out);font:500 13px inherit;font-family:inherit;cursor:pointer;padding:0}
+:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
+.pb{height:10px;background:var(--line);border-radius:5px;overflow:hidden;min-width:120px}
+.pb i{display:block;height:100%;background:var(--in)}.pb.w i{background:var(--warn)}.pb.o i{background:var(--out)}
+.login{max-width:400px;margin:0 auto;padding:48px 16px}
+.login h1{font-size:30px;color:var(--pri)}
+.login .card{display:flex;flex-direction:column;gap:12px}
+.err{color:var(--out);margin:0;min-height:1.2em}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--pri2);color:var(--pri)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:14px;display:none;max-width:90%}
+@media print{header .btn,nav,.noprint,#toast{display:none!important}body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;background:var(--bg);padding:4px;border-radius:10px}.tabs button{flex:1;border:0;background:none;color:var(--mut);font-family:inherit;font-weight:600;font-size:14px;padding:9px;border-radius:7px;cursor:pointer}.tabs button.on{background:var(--surf);color:var(--pri);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ok{color:var(--in);margin:0}.chk{flex-direction:row;align-items:center;gap:8px;font-weight:400}.chk input{width:auto}
+.steps{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:12px}.steps li{display:flex;gap:12px;align-items:center}.steps .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--pri2);color:var(--pri);display:grid;place-items:center}.grow{flex:1}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="toast" role="status"></div>
+<script>
+const KEY='simkeu_v2',$=id=>document.getElementById(id),v=id=>$(id).value;
+const fmt=n=>'Rp'+new Intl.NumberFormat('id-ID').format(n);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tot=a=>a.reduce((s,x)=>s+x.amount,0);
+const f=(l,i)=>`<label>${l}${i}</label>`;
+const ROLES={kepala:'Kepala sekolah',bendahara:'Bendahara',staf:'Staf administrasi',publik:'Wali murid / masyarakat'};
+const MENU={dash:'Dashboard',ang:'Data anggaran',in:'Pemasukan dana',out:'Pengeluaran dana',lap:'Laporan keuangan',mon:'Monitoring anggaran',usr:'Manajemen pengguna'};
+const ACCESS={publik:['dash','mon'],kepala:['dash','ang','in','out','lap','mon','usr'],bendahara:['dash','ang','in','out','lap','mon'],staf:['dash','in','out','mon']};
+let S,me=null,page='dash',R={f:'',t:''};
+
+function demo(){
+ const b=[['b1','Operasional pembelajaran',45000000],['b2','Gaji dan honor',60000000],['b3','Sarana dan prasarana',30000000],['b4','Kegiatan kesiswaan',15000000],['b5','Administrasi sekolah',10000000]].map(x=>({id:x[0],name:x[1],amount:x[2]}));
+ const i=[['2026-07-15','Dana BOS','BOS tahap 2',80000000],['2026-08-05','SPP','SPP Agustus',22000000],['2026-09-05','SPP','SPP September',21500000],['2026-09-12','Sumbangan','Sumbangan komite',3000000],['2026-10-05','SPP','SPP Oktober',21000000]].map(x=>({id:uid(),date:x[0],source:x[1],desc:x[2],amount:x[3],by:'Bendahara'}));
+ const o=[['2026-07-20','b2','Honor guru Juli',19000000],['2026-08-25','b2','Honor guru Agustus',19000000],['2026-09-25','b2','Honor guru September',19000000],['2026-08-10','b1','ATK dan buku ajar',12500000],['2026-09-14','b1','Media pembelajaran',9800000],['2026-09-02','b3','Perbaikan atap kelas',27000000],['2026-10-10','b4','Lomba antarkelas',4200000],['2026-10-02','b5','Listrik dan internet',3600000]].map(x=>({id:uid(),date:x[0],budgetId:x[1],desc:x[2],amount:x[3],by:'Bendahara'}));
+ return{budgets:b,income:i,expense:o,approved:[]};
+}
+function seed(){return{users:[],budgets:[],income:[],expense:[],approved:[]}}
+function loadDemo(){Object.assign(S,demo());save();render();toast('Data contoh dimasukkan')}
+function load(){try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r)}catch(e){}return seed()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2800)}
+const bname=id=>(S.budgets.find(b=>b.id===id)||{name:'(pos dihapus)'}).name;
+function all(){return[...S.income.map(x=>({...x,type:'in',label:x.source})),...S.expense.map(x=>({...x,type:'out',label:bname(x.budgetId)}))].sort((a,b)=>b.date.localeCompare(a.date))}
+
+let tab='in',msg='';
+const H=async s=>{try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('simkeu:'+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return'p:'+btoa(unescape(encodeURIComponent(s)))}};
+const tp=c=>document.querySelectorAll('.pw').forEach(i=>i.type=c.checked?'text':'password');
+const shw='<label class="chk"><input type="checkbox" onchange="tp(this)">Tampilkan kata sandi</label>';
+const err=m=>{const e=$('err');if(e)e.textContent=m;return null};
+const shell=b=>{$('app').innerHTML=`<main class="login"><h1>SIMKEU Sekolah</h1><p class="mut">Catat dan pantau keuangan sekolah dengan mudah.</p><div class="card">${b}</div><p class="mut sm">Data tersimpan di peramban perangkat ini saja.</p></main>`};
+function login(){if(!S.users.length)return setup();const up=tab==='up';
+ shell(`<div class="tabs"><button class="${up?'':'on'}" onclick="tab='in';msg='';login()">Masuk</button><button class="${up?'on':''}" onclick="tab='up';msg='';login()">Daftar akun baru</button></div>`+(up?
+ `${f('Nama lengkap','<input id="n" autocomplete="name">')}${f('Nama pengguna (tanpa spasi)','<input id="u" autocapitalize="none" autocomplete="username">')}${f('Kata sandi (minimal 6 karakter)','<input id="p" class="pw" type="password" autocomplete="new-password">')}${f('Ulangi kata sandi','<input id="p2" class="pw" type="password" autocomplete="new-password">')}${shw}${f('Daftar sebagai','<select id="r"><option value="publik">Wali murid / masyarakat (langsung aktif)</option><option value="bendahara">Bendahara (perlu disetujui Kepala Sekolah)</option><option value="staf">Staf administrasi (perlu disetujui Kepala Sekolah)</option></select>')}<p id="err" class="err" role="alert"></p><button class="btn" onclick="doReg()">Daftar</button>`
+ :`${msg?`<p class="ok">${msg}</p>`:''}${f('Nama pengguna','<input id="u" autocapitalize="none" autocomplete="username">')}${f('Kata sandi','<input id="p" class="pw" type="password" autocomplete="current-password">')}${shw}<p id="err" class="err" role="alert"></p><button class="btn" onclick="doLogin()">Masuk</button><p class="mut sm">Belum punya akun? Klik <b>Daftar akun baru</b> di atas.</p><button class="btn ghost" onclick="pub()">Lihat ringkasan tanpa akun</button>`))}
+function setup(){shell(`<h2>Selamat datang! Buat akun pertama</h2><p class="mut sm">Akun ini otomatis menjadi <b>Kepala Sekolah</b> (pengelola aplikasi). Nanti Bendahara dan staf bisa mendaftar sendiri, Anda tinggal menyetujui.</p>${f('Nama lengkap','<input id="n">')}${f('Nama pengguna (tanpa spasi)','<input id="u" autocapitalize="none">')}${f('Kata sandi (minimal 6 karakter)','<input id="p" class="pw" type="password">')}${f('Ulangi kata sandi','<input id="p2" class="pw" type="password">')}${shw}<p id="err" class="err" role="alert"></p><button class="btn" onclick="doSetup()">Buat akun dan mulai</button>`)}
+async function mk(role,st){const n=v('n').trim(),u=v('u').trim().toLowerCase(),p=v('p');
+ if(!n||!u)return err('Nama lengkap dan nama pengguna wajib diisi.');
+ if(/\s/.test(u))return err('Nama pengguna tidak boleh memakai spasi.');
+ if(p.length<6)return err('Kata sandi minimal 6 karakter.');
+ if(p!==v('p2'))return err('Ulangi kata sandi belum sama. Ketik ulang dengan teliti.');
+ if(S.users.some(x=>x.username===u))return err('Nama pengguna sudah dipakai. Coba nama lain.');
+ const x={id:uid(),name:n,username:u,password:await H(p),role,status:st};S.users.push(x);save();return x}
+async function doSetup(){const x=await mk('kepala','aktif');if(x){enter(x);toast('Akun dibuat. Selamat datang!')}}
+async function doReg(){const r=v('r'),st=r==='publik'?'aktif':'menunggu',x=await mk(r,st);if(!x)return;
+ if(st==='aktif'){enter(x);toast('Pendaftaran berhasil')}else{tab='in';msg='Pendaftaran berhasil! Akun Anda menunggu persetujuan Kepala Sekolah. Setelah disetujui, silakan masuk di sini.';login()}}
+async function doLogin(){const u=S.users.find(x=>x.username===v('u').trim().toLowerCase());
+ if(!u)return err('Nama pengguna belum terdaftar. Klik "Daftar akun baru" di atas.');
+ if(u.password!==await H(v('p')))return err('Kata sandi salah. Coba lagi.');
+ if(u.status==='menunggu')return err('Akun Anda belum disetujui Kepala Sekolah. Mohon tunggu.');
+ enter(u)}
+function enter(u){me=u;page='dash';try{localStorage.setItem(KEY+'_me',u.id)}catch(e){}render()}
+function pub(){me={name:'Pengunjung',role:'publik'};page='dash';render()}
+function out(){me=null;try{localStorage.removeItem(KEY+'_me')}catch(e){}render()}
+function go(p){page=p;render()}
+document.addEventListener('keydown',e=>{if(e.key!=='Enter'||me||!$('u'))return;if($('r'))doReg();else if($('p2'))doSetup();else doLogin()});
+
+function guide(){if(me.role==='publik')return'';const pd=S.users.filter(u=>u.status==='menunggu').length;let h='';
+ if(me.role==='kepala'&&pd)h+=`<section class="card"><div class="row"><span><b>${pd} pendaftar baru</b> menunggu persetujuan Anda.</span><button class="btn sm" onclick="go('usr')">Tinjau</button></div></section>`;
+ if(!S.income.length&&!S.expense.length){const st=[['ang','Buat pos anggaran','Contoh: Gaji guru, Operasional, Sarana.'],['in','Catat uang masuk','Contoh: Dana BOS, SPP.'],['out','Catat uang keluar','Pilih pos anggarannya, lalu isi jumlah.']].filter(x=>ACCESS[me.role].includes(x[0]));
+ h+=`<section class="card"><h2>Mulai dalam 3 langkah</h2><ol class="steps">${st.map((x,i)=>`<li><b class="n">${i+1}</b><span class="grow"><b>${x[1]}</b><br><span class="mut sm">${x[2]}</span></span><button class="btn ghost sm" onclick="go('${x[0]}')">Buka</button></li>`).join('')}</ol>${me.role!=='staf'?'<p class="sm mut">Ingin mencoba dulu? <button class="lnk" style="color:var(--pri)" onclick="loadDemo()">Isi dengan data contoh</button></p>':''}</section>`}
+ return h}
+const HELP={dash:'Ringkasan keuangan sekolah dalam sekali lihat.',ang:'Daftar pos dana yang direncanakan (pagu) untuk satu tahun.',in:'Catat setiap uang yang masuk ke sekolah.',out:'Catat setiap uang yang keluar. Pilih pos anggarannya.',lap:'Pilih periode lalu cetak. Kepala sekolah dapat menyetujui laporan.',mon:'Lihat berapa persen anggaran tiap pos sudah terpakai.',usr:'Setujui pendaftar baru dan atur akun pengguna.'};
+function stat(l,n){return`<div class="card"><p class="mut sm">${l}</p><p class="v">${fmt(n)}</p></div>`}
+function txTable(rows,del){if(!rows.length)return'<p class="mut">Belum ada transaksi. Tambahkan lewat formulir di atas.</p>';
+ return`<div class="sc"><table><tr><th>Tanggal</th><th>Jenis</th><th>Kategori</th><th>Keterangan</th><th class="r">Jumlah</th>${del?'<th></th>':''}</tr>${rows.map(x=>`<tr><td>${x.date}</td><td class="${x.type}">${x.type==='in'?'Masuk':'Keluar'}</td><td>${esc(x.label)}</td><td>${esc(x.desc||'-')}</td><td class="r ${x.type}">${x.type==='in'?'+':'-'}${fmt(x.amount)}</td>${del?`<td><button class="lnk" onclick="delTx('${x.type}','${x.id}')">Hapus</button></td>`:''}</tr>`).join('')}</table></div>`}
+function chart(){const m={},z=()=>({i:0,o:0});S.income.forEach(x=>{(m[x.date.slice(0,7)]??=z()).i+=x.amount});S.expense.forEach(x=>{(m[x.date.slice(0,7)]??=z()).o+=x.amount});
+ const k=Object.keys(m).sort().slice(-6);if(!k.length)return'<p class="mut">Belum ada transaksi untuk digrafikkan.</p>';
+ const mx=Math.max(...k.map(a=>Math.max(m[a].i,m[a].o)),1),w=600/k.length,bn=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+ return`<div class="sc"><svg viewBox="0 0 600 205" width="100%" role="img" aria-label="Grafik pemasukan dan pengeluaran per bulan">`+k.map((a,j)=>{const x=j*w+w/2,hi=m[a].i/mx*150,ho=m[a].o/mx*150;return`<rect x="${x-26}" y="${170-hi}" width="24" height="${hi}" rx="3" fill="var(--in)"/><rect x="${x+2}" y="${170-ho}" width="24" height="${ho}" rx="3" fill="var(--out)"/><text x="${x}" y="194" text-anchor="middle" fill="var(--mut)" font-size="13">${bn[+a.slice(5)-1]} ${a.slice(2,4)}</text>`}).join('')+`</svg></div><p class="mut sm"><span class="dot in"></span>Pemasukan<span class="dot out"></span>Pengeluaran</p>`}
+
+const pages={
+dash(){const ti=tot(S.income),to=tot(S.expense),pct=ti?Math.min(100,Math.round(to/ti*100)):0;
+ return guide()+`<section class="hero"><p class="lbl">Sisa saldo kas</p><p class="big">${fmt(ti-to)}</p><div class="bar"><i style="width:${pct}%"></i></div><p class="mut sm">${pct}% dana yang masuk sudah terpakai</p></section><div class="stats">${stat('Total anggaran',tot(S.budgets))}${stat('Total pemasukan',ti)}${stat('Total pengeluaran',to)}</div><section class="card"><h2>Pemasukan dan pengeluaran per bulan</h2>${chart()}</section>`+(me.role!=='publik'?`<section class="card"><h2>Riwayat transaksi terbaru</h2>${txTable(all().slice(0,8))}</section>`:'')},
+ang(){const w=me.role==='bendahara'||me.role==='kepala';
+ return(w?`<section class="card"><h2>Tambah pos anggaran</h2><div class="form">${f('Nama pos','<input id="n">')}${f('Pagu (Rp)','<input id="a" type="number" min="0">')}<button class="btn" onclick="addB()">Simpan pos</button></div></section>`:'')+`<section class="card"><h2>Rencana anggaran (RKAS)</h2><div class="sc"><table><tr><th>Pos anggaran</th><th class="r">Pagu</th>${w?'<th></th>':''}</tr>${S.budgets.map(b=>`<tr><td>${esc(b.name)}</td><td class="r">${fmt(b.amount)}</td>${w?`<td><button class="lnk" onclick="delB('${b.id}')">Hapus</button></td>`:''}</tr>`).join('')}<tr class="t"><td>Total</td><td class="r">${fmt(tot(S.budgets))}</td>${w?'<td></td>':''}</tr></table></div></section>`},
+in(){return inout('in')},out(){return inout('out')},
+lap(){const rows=all().filter(x=>(!R.f||x.date>=R.f)&&(!R.t||x.date<=R.t)),i=tot(rows.filter(x=>x.type==='in')),o=tot(rows.filter(x=>x.type==='out')),key=(R.f||'awal')+'|'+(R.t||'akhir'),ap=S.approved.find(a=>a.key===key);
+ return`<section class="card noprint"><h2>Periode laporan</h2><div class="form">${f('Dari tanggal',`<input id="rf" type="date" value="${R.f}" onchange="setR()">`)}${f('Sampai tanggal',`<input id="rt" type="date" value="${R.t}" onchange="setR()">`)}<button class="btn ghost" onclick="window.print()">Cetak laporan</button></div></section><section class="card"><div class="row"><h2>Laporan keuangan sekolah</h2>${ap?`<span class="tag">Disetujui ${esc(ap.by)}, ${ap.at}</span>`:'<span class="tag">Menunggu persetujuan</span>'}</div><p class="mut sm">Periode: ${R.f||'awal'} sampai ${R.t||'akhir'}</p><div class="stats">${stat('Pemasukan',i)}${stat('Pengeluaran',o)}${stat('Saldo periode',i-o)}</div>${txTable(rows)}${me.role==='kepala'&&!ap?`<p class="noprint"><button class="btn" onclick="approve('${key}')">Setujui laporan periode ini</button></p>`:''}</section>`},
+mon(){return`<section class="card"><h2>Realisasi anggaran per pos</h2><div class="sc"><table><tr><th>Pos</th><th class="r">Pagu</th><th class="r">Terpakai</th><th>Realisasi</th><th>Status</th></tr>${S.budgets.map(b=>{const s=tot(S.expense.filter(x=>x.budgetId===b.id)),p=b.amount?Math.round(s/b.amount*100):0,c=p>100?'o':p>=90?'w':'',st=p>100?'Melebihi anggaran':p>=90?'Hampir habis':'Aman';return`<tr><td>${esc(b.name)}</td><td class="r">${fmt(b.amount)}</td><td class="r">${fmt(s)}</td><td><div class="pb ${c}"><i style="width:${Math.min(p,100)}%"></i></div>${p}%</td><td class="${c==='o'?'out':''}">${st}</td></tr>`}).join('')}</table></div></section>`},
+usr(){const pd=S.users.filter(u=>u.status==='menunggu');
+ return(pd.length?`<section class="card"><h2>Pendaftar menunggu persetujuan (${pd.length})</h2><p class="mut sm">Setujui hanya jika Anda mengenal orangnya.</p><div class="sc"><table><tr><th>Nama</th><th>Pengguna</th><th>Peran</th><th></th></tr>${pd.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.username)}</td><td>${ROLES[u.role]}</td><td class="r"><button class="btn sm" onclick="setSt('${u.id}',1)">Setujui</button> <button class="lnk" onclick="setSt('${u.id}',0)">Tolak</button></td></tr>`).join('')}</table></div></section>`:'')+`<section class="card"><h2>Daftar pengguna</h2><p class="mut sm">Pengguna baru bisa mendaftar sendiri di halaman masuk. Anda juga bisa menambahkan langsung di bawah.</p><div class="sc"><table><tr><th>Nama</th><th>Pengguna</th><th>Peran</th><th></th></tr>${S.users.filter(u=>u.status!=='menunggu').map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.username)}</td><td>${ROLES[u.role]}</td><td class="r">${u.id===me.id?'<span class="mut sm">Akun Anda</span>':`<button class="lnk" onclick="resetU('${u.id}')">Ganti sandi</button> &nbsp; <button class="lnk" onclick="delU('${u.id}')">Hapus</button>`}</td></tr>`).join('')}</table></div></section><section class="card"><h2>Tambah pengguna langsung</h2><div class="form">${f('Nama','<input id="n">')}${f('Nama pengguna','<input id="un">')}${f('Kata sandi','<input id="pw" type="password">')}${f('Peran','<select id="ro"><option value="bendahara">Bendahara</option><option value="staf">Staf administrasi</option><option value="kepala">Kepala sekolah</option><option value="publik">Wali murid / masyarakat</option></select>')}<button class="btn" onclick="addU()">Simpan pengguna</button></div></section>`}
+};
+function inout(t){const I=t==='in',add=['kepala','bendahara','staf'].includes(me.role),today=new Date().toISOString().slice(0,10);
+ const opts=I?['Dana BOS','SPP','Sumbangan','Lainnya'].map(x=>`<option>${x}</option>`).join(''):S.budgets.map(b=>`<option value="${b.id}">${esc(b.name)}</option>`).join('');
+ return(add?`<section class="card"><h2>${I?'Catat pemasukan dana':'Catat pengeluaran dana'}</h2><div class="form">${f('Tanggal',`<input id="d" type="date" value="${today}">`)}${f(I?'Sumber dana':'Pos anggaran',`<select id="s">${opts}</select>`)}${f('Keterangan','<input id="k">')}${f('Jumlah (Rp)','<input id="a" type="number" min="0">')}<button class="btn" onclick="${I?'addIn()':'addOut()'}">Simpan ${I?'pemasukan':'pengeluaran'}</button></div></section>`:'')+`<section class="card"><h2>${I?'Riwayat pemasukan':'Riwayat pengeluaran'}</h2>${txTable(all().filter(x=>x.type===t),me.role==='bendahara'||me.role==='kepala')}</section>`}
+
+function addB(){const n=v('n').trim(),a=+v('a');if(!n||!(a>0))return toast('Isi nama pos dan pagu lebih dari 0');S.budgets.push({id:uid(),name:n,amount:a});save();render()}
+function delB(id){if(S.expense.some(x=>x.budgetId===id))return toast('Pos ini sudah dipakai transaksi, jadi tidak bisa dihapus');if(!confirm('Hapus pos anggaran ini?'))return;S.budgets=S.budgets.filter(b=>b.id!==id);save();render()}
+function addIn(){const d=v('d'),a=+v('a');if(!d||!(a>0))return toast('Isi tanggal dan jumlah lebih dari 0');S.income.push({id:uid(),date:d,source:v('s'),desc:v('k').trim(),amount:a,by:me.name});save();render();toast('Pemasukan dicatat')}
+function addOut(){const d=v('d'),a=+v('a'),b=v('s');if(!b)return toast('Tambahkan pos anggaran dulu');if(!d||!(a>0))return toast('Isi tanggal dan jumlah lebih dari 0');
+ const bd=S.budgets.find(x=>x.id===b),used=tot(S.expense.filter(x=>x.budgetId===b));
+ if(used+a>bd.amount&&!confirm('Pengeluaran ini melebihi sisa anggaran "'+bd.name+'" ('+fmt(bd.amount-used)+'). Tetap catat?'))return;
+ S.expense.push({id:uid(),date:d,budgetId:b,desc:v('k').trim(),amount:a,by:me.name});save();render();toast('Pengeluaran dicatat')}
+function delTx(t,id){if(!confirm('Hapus transaksi ini?'))return;if(t==='in')S.income=S.income.filter(x=>x.id!==id);else S.expense=S.expense.filter(x=>x.id!==id);save();render()}
+function setR(){R.f=v('rf');R.t=v('rt');render()}
+function approve(key){S.approved.push({key,by:me.name,at:new Date().toISOString().slice(0,10)});save();render();toast('Laporan disetujui')}
+async function addU(){const n=v('n').trim(),u=v('un').trim().toLowerCase(),p=v('pw');if(!n||!u||p.length<6)return toast('Isi semua kolom, kata sandi minimal 6 karakter');if(/\s/.test(u))return toast('Nama pengguna tidak boleh memakai spasi');if(S.users.some(x=>x.username===u))return toast('Nama pengguna sudah dipakai');S.users.push({id:uid(),name:n,username:u,password:await H(p),role:v('ro'),status:'aktif'});save();render();toast('Pengguna ditambahkan')}
+function setSt(id,ok){if(ok)S.users.find(x=>x.id===id).status='aktif';else S.users=S.users.filter(x=>x.id!==id);save();render();toast(ok?'Akun disetujui':'Pendaftaran ditolak')}
+async function resetU(id){const p=prompt('Kata sandi baru (minimal 6 karakter):');if(!p)return;if(p.length<6)return toast('Minimal 6 karakter');S.users.find(x=>x.id===id).password=await H(p);save();toast('Kata sandi diganti')}
+function delU(id){if(!confirm('Hapus pengguna ini?'))return;S.users=S.users.filter(u=>u.id!==id);save();render()}
+
+function render(){if(!me)return login();
+ const nav=ACCESS[me.role].map(k=>`<button class="${k===page?'on':''}" onclick="go('${k}')">${MENU[k]}</button>`).join('');
+ $('app').innerHTML=`<header><div><b>SIMKEU Sekolah</b><span class="mut sm">${esc(me.name)}, ${ROLES[me.role]}</span></div><button class="btn ghost sm" onclick="out()">${me.id?'Keluar':'Ke halaman masuk'}</button></header><nav>${nav}</nav><main><p class="mut sm">${HELP[page]}</p>${pages[page]()}</main>`;window.scrollTo(0,0)}
+S=load();try{me=S.users.find(u=>u.id===localStorage.getItem(KEY+'_me')&&u.status!=='menunggu')||null}catch(e){}render();
+</script>
+</body>
+</html>
